@@ -1,8 +1,6 @@
 var repository = [];
 
-repository[0]='u';
-repository[1]='e';
-repository[2]='i';
+
 
 
 
@@ -12,3 +10,7 @@ var bulbasaur = {name:'Bulbasaur',height:0.7,types:['fire','ice','electric']};
 var squirtle = {name:'Squirtle',height:0.5,types:['grass','electric','steel']};
 
 
+repository[0]= charmeleon;
+repository[1]= metapod ;
+repository[2]= bulbasaur;
+repository[3]= squirtle;
