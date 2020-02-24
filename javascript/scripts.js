@@ -11,4 +11,4 @@ var metapod = {name:'Metapod',height:0.7,types:['rock','fire','gas']};
 var bulbasaur = {name:'Bulbasaur',height:0.7,types:['fire','ice','electric']};
 var squirtle = {name:'Squirtle',height:0.5,types:['grass','electric','steel']};
 
-document.write(pokemon.name);
+
