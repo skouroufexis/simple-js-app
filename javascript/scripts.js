@@ -14,3 +14,23 @@ repository[0]= charmeleon;
 repository[1]= metapod ;
 repository[2]= bulbasaur;
 repository[3]= squirtle;
+
+var l = repository.length;
+var c;
+var t="";
+
+for(c=0;c<l;c++){
+    
+    if(repository[c].height>1)
+            {
+                t='<div class="row">'+repository[c].name+' (height:'+repository[c].height+')'+'  <span class="span_highlight">Wow, that’s big!</span>'+'</div><br>';
+            }
+    
+    else
+            {
+                t='<div class="row">'+repository[c].name+' (height:'+repository[c].height+')'+'</div><br>';
+            }
+    
+    document.write(t);
+    
+}
