@@ -50,7 +50,17 @@ function for2(repository){
     
     
     function print(item, i){
-        document.write('<div class="row"><b>Name:</b>'+item.name+' <b>height:</b> '+item.height+' <b>types:</b> '+item.types+'</div><br>');
+        
+        if(item.height>1)
+            {
+                 document.write('<div class="row"><b>Name:</b>'+item.name+' <b>height:</b> '+item.height+' <b><span class="span_highlight">Wow, that’s big!</span> types:</b> '+item.types+'</div><br>');       
+            }
+        else
+            {
+                document.write('<div class="row"><b>Name:</b>'+item.name+' <b>height:</b> '+item.height+' <b>types:</b> '+item.types+'</div><br>');
+            }
+        
+        
     }
     
     
