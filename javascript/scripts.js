@@ -15,22 +15,49 @@ repository[1]= metapod ;
 repository[2]= bulbasaur;
 repository[3]= squirtle;
 
-var l = repository.length;
-var c;
-var t="";
 
-for(c=0;c<l;c++){
+//for1(repository);
+for2(repository);
+
+//function for1(repository){
+//    
+//    var l = repository.length;
+//    var c;
+//    var t="";
+//    
+//    
+//    for(c=0;c<l;c++){
+//    
+//        if(repository[c].height>1)
+//                {
+//                    t='<div class="row">'+repository[c].name+' (height:'+repository[c].height+')'+'  <span class="span_highlight">Wow, that’s big!</span>'+'</div><br>';
+//                }
+//
+//        else
+//                {
+//                    t='<div class="row">'+repository[c].name+' (height:'+repository[c].height+')'+'</div><br>';
+//                }
+//
+//        document.write(t);
+//    
+//    }
+//    
+//}
+
+
+
+function for2(repository){
     
-    if(repository[c].height>1)
-            {
-                t='<div class="row">'+repository[c].name+' (height:'+repository[c].height+')'+'  <span class="span_highlight">Wow, that’s big!</span>'+'</div><br>';
-            }
     
-    else
-            {
-                t='<div class="row">'+repository[c].name+' (height:'+repository[c].height+')'+'</div><br>';
-            }
+    function print(item, i){
+        document.write('<div class="row"><b>Name:</b>'+item.name+' <b>height:</b> '+item.height+' <b>types:</b> '+item.types+'</div><br>');
+    }
     
-    document.write(t);
+    
+    repository.forEach(print);
     
 }
+
+
+
+ 
