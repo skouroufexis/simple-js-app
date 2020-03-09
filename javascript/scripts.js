@@ -33,30 +33,39 @@ var pokemonRepository = (function(){
 })();
 
 var repository = pokemonRepository.getAll();
+
 for2(repository);
-
-
-
 
 function for2(repository){
     
     
-    function print(item, i){
+//    function print(item,i){
+//        
+//        if(item.height>1)
+//            {
+//                 document.write('<div class="row"><b>Name:</b>'+item.name+' <b>height:</b> '+item.height+' <b><span class="span_highlight">Wow, that’s big!</span> types:</b> '+item.types+'</div><br>');       
+//            }
+//        else
+//            {
+//                document.write('<div class="row"><b>Name:</b>'+item.name+' <b>height:</b> '+item.height+' <b>types:</b> '+item.types+'</div><br>');
+//            }
+//        
+//        
+//    }
+    
+    function buttons(item){
         
-        if(item.height>1)
-            {
-                 document.write('<div class="row"><b>Name:</b>'+item.name+' <b>height:</b> '+item.height+' <b><span class="span_highlight">Wow, that’s big!</span> types:</b> '+item.types+'</div><br>');       
-            }
-        else
-            {
-                document.write('<div class="row"><b>Name:</b>'+item.name+' <b>height:</b> '+item.height+' <b>types:</b> '+item.types+'</div><br>');
-            }
-        
+        var listItem=document.createElement('li');
+        var btn = document.createElement('button');
+        btn.innerText=item.name;
+        btn.classList.add('button_pokemon');
+        listItem.appendChild(btn);
+        plist.appendChild(listItem);
         
     }
     
-    
-    repository.forEach(print);
+    var plist=document.querySelector('.list_pokemon');
+    repository.forEach(buttons);
     
 }
 
