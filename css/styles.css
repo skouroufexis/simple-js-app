@@ -22,4 +22,12 @@
                 }
 
 
-ul {list-style: none;}
+ul {list-style: none; }
+
+
+
+@media screen and (max-width: 932px){
+    ul {width: 90%; margin-left: 5%;}
+    .button_pokemon{width: 100%;}
+    
+}
