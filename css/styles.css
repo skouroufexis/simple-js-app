@@ -7,3 +7,16 @@
 
 
 .span_highlight {margin-left: 1%; background-color: lightyellow; color: orangered; padding: 1%;}
+
+
+
+.button_pokemon {background-color: cornflowerblue; color: white;
+                 border: solid lightyellow thin;
+                 box-shadow: 0px 0px 3px deepskyblue;       
+                 width: 50%;
+                 height: 50px;
+                 border-radius: 15px;
+                 margin-top: 1%;
+                 font-size: 1em;   
+                 cursor: pointer;
+                }
