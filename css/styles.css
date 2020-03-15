@@ -20,8 +20,10 @@
                  font-size: 1em;   
                  cursor: pointer;
                 }
-
-
+#div_loading {display: none;
+                border: solid red thin; text-align: center;}
+#div_loading p {color: skyblue;}
+#img_loading {width: 50px;}
 ul {list-style: none; }
 
 
