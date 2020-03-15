@@ -4,33 +4,27 @@
 var pokemonRepository = (function(){
     
     
-    var repository = [];
-    var charmeleon = {name:'charmeleon',height:1.1,types:['ground','rock','water']};
-    var metapod = {name:'Metapod',height:0.7,types:['rock','fire','gas']};
-    var bulbasaur = {name:'Bulbasaur',height:0.7,types:['fire','ice','electric']};
-    var squirtle = {name:'Squirtle',height:0.5,types:['grass','electric','steel']};
+    var repository=[];
     
-    repository[0]= charmeleon;
-    repository[1]= metapod ;
-    repository[2]= bulbasaur;
-    repository[3]= squirtle;
+    
+    
+//    var charmeleon = {name:'charmeleon',height:1.1,types:['ground','rock','water']};
+//    var metapod = {name:'Metapod',height:0.7,types:['rock','fire','gas']};
+//    var bulbasaur = {name:'Bulbasaur',height:0.7,types:['fire','ice','electric']};
+//    var squirtle = {name:'Squirtle',height:0.5,types:['grass','electric','steel']};
+    
+    
     
     var plist=document.querySelector('.list_pokemon');
+    var loadingMessage ='List loading...';
+    
     
     function getAll(){
+        
         return repository;
         
     }
 
-    function add(item){
-        if(typeof item==='object' && Object.keys(item)[0]==='name' && Object.keys(item)[1]==='height' && Object.keys(item)[2]==='types')
-            {
-                repository.push(item);        
-                    
-            }
-    } 
-    
-    
     function addListItem(pokemon){
         
         var listItem=document.createElement('li');
@@ -40,24 +34,80 @@ var pokemonRepository = (function(){
         listItem.appendChild(btn);
         plist.appendChild(listItem);
         btn.addEventListener('click',function(){
-            showDetails(pokemon);
+        
+        showDetails(pokemon);
         });
         
     }
     
     function showDetails(pokemon){
-        console.log(pokemon.name);
+        loadDetails(pokemon);
     }
     
-        
     
-    return {getAll:getAll, add:add,addListItem:addListItem};   
+    function loadList(){
+        showLoadingMessage();
+        var path='https://pokeapi.co/api/v2/pokemon/';
+        fetch(path).then(function(response){
+            return response.json();
+        }).then(function(list){
+            
+            list.results.forEach(function(item){
+                var pokemon = {name:item.name, detailsUrl:item.url};
+                add(pokemon);
+            })
+            
+            
+            
+        }).catch(function (e) {
+            console.error(e);
+        });
+        
+        hideLoadingMessage();
+    }
+    
+    
+    function add(pokemon){
+
+            repository.push(pokemon);
+            getAll().forEach(addListItem);
+            
+    } 
+    
+    function loadDetails(pokemon){
+        showLoadingMessage();
+        var path = pokemon.detailsUrl;
+        
+        fetch(path).then(function(response){
+            return response.json();
+        }).then(function(details){
+            
+            var height = details.height;
+            var imgUrl =details.sprites.front_default;
+            pokemon = {name:pokemon.name,detailsUrl:pokemon.detailsUrl, height:height, imgUrl:imgUrl}
+            console.log(pokemon);
+        });
+        
+        hideLoadingMessage();
+    }
+    
+     function showLoadingMessage(){
+         document.getElementById('div_loading').style.display='block';
+     }   
+    
+    function hideLoadingMessage(){
+        document.getElementById('div_loading').style.display='none';
+    }
+    
+    return {loadList:loadList,add:add,getAll:getAll};  
+    
+    
     
 })();
 
-var repository = pokemonRepository.getAll();
-var addListItem=pokemonRepository.addListItem;
-repository.forEach(addListItem);
+
+pokemonRepository.loadList();
+//console.log(pokemonRepository.getAll());
 
 
 
@@ -65,16 +115,13 @@ repository.forEach(addListItem);
 
 
 
- //    function print(item,i){
-//        
-//        if(item.height>1)
-//            {
-//                 document.write('<div class="row"><b>Name:</b>'+item.name+' <b>height:</b> '+item.height+' <b><span class="span_highlight">Wow, that’s big!</span> types:</b> '+item.types+'</div><br>');       
-//            }
-//        else
-//            {
-//                document.write('<div class="row"><b>Name:</b>'+item.name+' <b>height:</b> '+item.height+' <b>types:</b> '+item.types+'</div><br>');
-//            }
-//        
-//        
-//    }
+
+
+
+
+
+
+
+
+
+ 
