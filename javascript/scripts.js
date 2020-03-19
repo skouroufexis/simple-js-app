@@ -29,10 +29,17 @@ var pokemonRepository = (function(){
         
         var listItem=document.createElement('li');
         var btn = document.createElement('button');
+        
+        
         btn.innerText=pokemon.name;
         btn.classList.add('button_pokemon');
         listItem.appendChild(btn);
         plist.appendChild(listItem);
+        
+       
+        
+        
+        
         btn.addEventListener('click',function(){
         
         showDetails(pokemon);
@@ -59,6 +66,8 @@ var pokemonRepository = (function(){
             
             
             
+            
+            
         }).catch(function (e) {
             console.error(e);
         });
@@ -70,7 +79,8 @@ var pokemonRepository = (function(){
     function add(pokemon){
 
             repository.push(pokemon);
-            getAll().forEach(addListItem);
+            addListItem(pokemon);
+            
             
     } 
     
@@ -84,8 +94,36 @@ var pokemonRepository = (function(){
             
             var height = details.height;
             var imgUrl =details.sprites.front_default;
-            pokemon = {name:pokemon.name,detailsUrl:pokemon.detailsUrl, height:height, imgUrl:imgUrl}
-            console.log(pokemon);
+            pokemon = {name:pokemon.name,detailsUrl:pokemon.detailsUrl, height:height, imgUrl:imgUrl};
+            
+            //add values to the modal elements
+            document.getElementById('p_name').innerHTML=pokemon.name;
+            document.getElementById('p_height').innerHTML=pokemon.height;
+            document.getElementById('image_pokemon').src=pokemon.imgUrl;
+            
+            //fade the pokemon list
+            var fade =document.querySelectorAll('.fade');
+            fade.forEach(function(i){
+                i.style.opacity='0.2';
+            });
+            
+            //display the modal
+            document.querySelector('#div_modal_container').style.display='flex';
+            
+            //add listener to the close button and for other close methods
+            document.querySelector('#button_modal_close').addEventListener('click',closeModal);
+            document.addEventListener('keydown',function(src){
+                if(src.key==='Escape'){
+                    closeModal();
+                }
+            });
+            
+            document.querySelector('#div_modal_container').addEventListener('click',function(src){
+                if(src.target.id==='div_modal_container'){
+                    closeModal();
+                }
+            })
+            
         });
         
         hideLoadingMessage();
@@ -93,6 +131,7 @@ var pokemonRepository = (function(){
     
      function showLoadingMessage(){
          document.getElementById('div_loading').style.display='block';
+         
      }   
     
     function hideLoadingMessage(){
@@ -100,6 +139,20 @@ var pokemonRepository = (function(){
     }
     
     return {loadList:loadList,add:add,getAll:getAll};  
+    
+    
+    
+    function closeModal(){
+        //close the modal
+        document.querySelector('#div_modal_container').style.display='none';
+        
+        //show the pokemon list
+            var fade =document.querySelectorAll('.fade');
+            fade.forEach(function(i){
+                i.style.opacity='1';
+            });
+        
+    }
     
     
     
