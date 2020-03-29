@@ -16,7 +16,7 @@ var pokemonRepository = (function(){
     
     
     var plist=document.querySelector('.list_pokemon');
-    var loadingMessage ='List loading...';
+    
     
     
     function getAll(){
